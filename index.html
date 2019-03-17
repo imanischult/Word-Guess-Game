@@ -5,25 +5,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HANGMAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
 </head>
 <body>
-    <h1>Hangman <br> African Countries</h1>
 
-<!--The random word appears here (linked through JS)-->
-<div class="text" id="randomWord"></div>
-<br>
-<!-- Wins -->
-<div class="text"> Wins: <span id="wins"></span></div>
+      <!--Navbar NOT in container :)-->
+      <nav class="navbar navbar-dark">
+            <span class="navbar-brand mb-0 h1">Word Guess Game</span>
+        </nav>
 
-<!-- Wins -->
-<div class="text">Losses: <span id="losses"></span></div>
+<div class="container">
+    
+    <div class="row">
+        <!--About me and thumbnail-->
+        <div class="col-md-9">
 
-<!--Total number of guesses left-->
-<div class="text"> Guesses Left: <span id="guessesLeft"></span></div>
+            <div class='row' id="sub-row-image-text">
+                <div class="col-md-4">
+                    <img src="http://placehold.it/150x150" alt="Placehold" class="img-thumbnail">
+                </div>
+                <div class="col-md-8">
+                    
+                </div>
+        
+            </div>
+        </div>
 
-<!--Letters already used-->
-<div class="text">Letters already used: <span id="lettersUsed"></span></div>
+        <div class="col-md-2">
+                <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Instructions</h5>
+                          <p class="card-text">Pick a letter to guess the word!</p>
+                        </div>
+                </div>
+        </div>
+
+    </div>
+    <div class="row before-game-card">
+        <div class="col-md-12"></div>
+    </div>
+</div>
+
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12 heading game-card">
+            <div class="card text-center">
+                    <div class="card-header text">
+                      <h5>African Countries</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class ="row">
+                          <div class="col-md-12">
+                                <div class="text" id="randomWord"></div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-3">
+                                <div class="card-body">
+                                        <h5 class="card-title text">Wins</h5>
+                                        <p class="card-text"><span id="wins"></span></p>
+                                      </div>
+                        </div>
+                        <div class="col-md-3">
+                                <div class="card-body">
+                                        <h5 class="card-title text">Losses</h5>
+                                        <p class="card-text text"><span id="losses"></span></p>
+                                      </div>
+                        </div>
+                        <div class="col-md-3">
+                                <div class="card-body">
+                                        <h5 class="card-title text">Guesses Left</h5>
+                                        <p class="card-text text"><span id="guessesLeft"></span></p>
+                                      </div>
+                        </div>
+                        <div class="col-md-3">
+                                <div class="card-body">
+                                        <h5 class="card-title text">Letters Used</h5>
+                                        <p class="card-text text"><span id="lettersUsed"></span></p>
+                                      </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+
+        </div>
+    </div>
+
+</div>
 </body>
 <script src="assets/javascript/game.js"></script>
 </html>
