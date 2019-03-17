@@ -5,7 +5,7 @@ var word = ["NIGERIA", "ETHIOPIA", "EGYPT", "DR CONGO", "TANZANIA", "SOUTHAFRICA
 
 var $randomWord = document.getElementById('randomWord');
 var $wins = document.getElementById('wins');
-var $loses = document.getElementById('losses');
+var $losses = document.getElementById('losses');
 var $guessesLeft = document.getElementById('guessesLeft');
 var $lettersUsed = document.getElementById('lettersUsed');
 
@@ -43,7 +43,14 @@ for (var i = 0; i < randomWord.length; i++) {
       pickedWordPlaceholderArr.push('_');
       }
     }
-  
+
+
+// Write new info to DOM //
+$randomWord.textContent = pickedWordPlaceholderArr.join(' ')
+$wins.textContent = wins;
+$losses.textContent = losses;
+$guessesLeft.textContent = guessesLeft;
+
 
 /*
 // Create an answer array (var answerArray) equal to the character count in the randomly chosen word. Each array will show as "_", representing each character in the random word //
