@@ -88,7 +88,7 @@ function letterGuess(letter) {
         }
       }
 
-  } else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) === 1) { 
+  } else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) !== -1) { 
            alert(`You've already guesed this letter. Try another one`)
 
   } else if (guessesLeft === 0) {
