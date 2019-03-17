@@ -1,5 +1,5 @@
 // Create an array which includes a list of words for game //
-var word = ["Nigeria", "Ethiopia", "Egypt", "DR Congo", "Tanzania", "South Africa", "Kenya", "Uganda", "Algeria", "Sudan", "Chad", "Guinea", "Rwanda", "Burundi", "Sierra Leone"]
+var word = ["NIGERIA", "ETHIOPIA", "EGYPT", "DR CONGO", "TANZANIA", "SOUTH AFRICA", "KENYA", "UGANDA", "ALGERIA", "SUDAN", "CHAD", "GUINEA", "RWANDA", "BURUNDI", "SIERRA LEONE"]
 
 // Grab reference to my DOM elements //
 
@@ -74,7 +74,21 @@ $guessesLeft.textContent = guessesLeft;
 function letterGuess(letter) {
   console.log(letter);
 
-  if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) === -1) {
+  if (randomWord.toLocaleLowerCase() == pickedWordPlaceholderArr.join('').toLowerCase()) {
+    alert("You win! The word was " + randomWord)
+    wins++;
+    $wins.textContent = wins;
+    newGame();
+} else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) !== -1) { 
+    alert(`You've already guesed this letter. Try another one`)
+
+} else if (guessesLeft === 0) {
+  alert ("Aw shucks! You lost. The word was " + randomWord);
+  losses++;
+  $losses.textContent = losses;
+  newGame()
+}
+  else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) === -1) {
     // Run Game Logic //
     lettersUsedBank.push(letter);
     guessesLeft--;
@@ -87,23 +101,8 @@ function letterGuess(letter) {
           pickedWordPlaceholderArr[i] = randomWord[i]; 
         }
       }
+  } 
 
-  } else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) !== -1) { 
-           alert(`You've already guesed this letter. Try another one`)
-
-  } else if (guessesLeft === 0) {
-    alert ("Aw shucks! You lost. The word was " + randomWord);
-    losses++;
-    $losses.textContent = losses;
-    newGame()
-
-  } else if (randomWord.toLocaleLowerCase() == pickedWordPlaceholderArr.join('').toLowerCase()) {
-    alert("You win! The word was " + randomWord)
-    wins++;
-    $wins.textContent = wins;
-    newGame();
-  }
-   
 
   // Show everything in DOM //
   
