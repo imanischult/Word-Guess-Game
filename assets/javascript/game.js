@@ -1,5 +1,5 @@
 // Create an array which includes a list of words for game //
-var word = ["NIGERIA", "ETHIOPIA", "EGYPT", "DR CONGO", "TANZANIA", "SOUTHAFRICA", "KENYA", "UGANDA", "ALGERIA", "SUDAN", "CHAD", "GUINEA", "RWANDA", "BURUNDI", "SIERRALEONE"]
+var word = ["NIGERIA", "ETHIOPIA", "EGYPT", "DR CONGO", "TANZANIA", "SOUTH AFRICA", "KENYA", "UGANDA", "ALGERIA", "SUDAN", "CHAD", "GUINEA", "RWANDA", "BURUNDI", "SIERRA LEONE"]
 
 // Grab reference to my DOM elements //
 
@@ -20,17 +20,35 @@ var randomWord = ' ';
 var pickedWordPlaceholderArr = [];
 var lettersUsedBank = [];
 
-// newGame resets all stats except for score
+// newGame resets all stats except for score //
 
 function newGame () {
-  // Reset game info //
+  // Reset game stats //
   gameRunning = true;
   guessesLeft = 15;
   lettersUsedBank = [];
   pickedWordPlaceholderArr = [];
+
+  //Re-pick random word //
+  randomWord = word[Math.floor(Math.random()* word.length)];
+  console.log(randomWord);
+
+  // Re-display placeholders //
+  for (var i = 0; i < randomWord.length; i++) {
+    if (randomWord[i] === ' ') {
+      pickedWordPlaceholderArr.push(' ');
+    } else {
+        pickedWordPlaceholderArr.push('_');
+      }
+    }
+
+  // Display contents to DOM //
+  $randomWord.textContent = pickedWordPlaceholderArr.join(' ')
+  $guessesLeft.textContent = guessesLeft;
 }
 
 // Create a formula that picks a random integer between 0 and 14 //
+
 randomWord = word[Math.floor(Math.random()* word.length)];
 console.log(randomWord);
 
@@ -41,116 +59,64 @@ for (var i = 0; i < randomWord.length; i++) {
     pickedWordPlaceholderArr.push(' ');
   } else {
       pickedWordPlaceholderArr.push('_');
-      }
     }
+  }
 
 
 // Write new info to DOM //
 $randomWord.textContent = pickedWordPlaceholderArr.join(' ')
 $wins.textContent = wins;
 $losses.textContent = losses;
-$guessesLeft.textContent = guessesLeft;
+$guessesLeft.textContent = guessesLeft; 
 
+//letterGuess function
 
-/*
-// Create an answer array (var answerArray) equal to the character count in the randomly chosen word. Each array will show as "_", representing each character in the random word //
-for (var i = 0; i < randomWord.length; i++) {
-    answerArray[i] = "_";
+function letterGuess(letter) {
+  console.log(letter);
 
-    console.log(answerArray);
-} 
+  if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) === -1) {
+    // Run Game Logic //
+    lettersUsedBank.push(letter);
+    guessesLeft--;
 
-/*
-var remainingLetters = randomWord.length;
-
-// Create a string of underscores "_" with the "join" function, and //
-var blankWord = answerArray.join(" ");
-
- console.log(blankWord);
-
-
-var displayWord = document.getElementById("randomWord").innerHTML = blankWord;
-
-// ********** THE MAIN GAME LOOP ************ //
-
-// While guesses left is greater than 0
-
-  // allow the player to guess a key using the keyboard
-  document.onkeyup = (function(e) {
-    var userGuess = e.key;
-    console.log(userGuess);
-
-    for (var j = 0; j < randomWord.length; j++) {
-      //if the letter they guessed is in the word
-      //at that point or index...
-     if (randomWord[j] === userGuess) {
-          //update the answer array with the letter they guessed at that point/index
-          answerArray[j] = userGuess;
-          //subtract one from remaining letters
-          remainingLetters--;
+    // Check if guessed letter is in picked word //
+      for (var i = 0; i < randomWord.length; i++) {
+        //convert both guessed letter and random word to lower case //
+        if (randomWord[i].toLowerCase() === letter.toLowerCase()) {
+          // If a match, swap out character placeholder with letter //
+          pickedWordPlaceholderArr[i] = randomWord[i]; 
+        }
       }
-     }
-    })
 
+  } else if (guessesLeft > 0 && lettersUsedBank.indexOf(letter) === 1) { 
+           alert(`You've already guesed this letter. Try another one`)
 
+  } else if (guessesLeft === 0) {
+    alert ("Aw shucks! You lost. The word was " + randomWord);
+    losses++;
+    $losses.textContent = losses;
+    newGame()
 
+  } else if (randomWord.toLocaleLowerCase() == pickedWordPlaceholderArr.join('').toLowerCase()) {
+    alert("You win! The word was " + randomWord)
+    wins++;
+    $wins.textContent = wins;
+    newGame();
+  }
+   
 
+  // Show everything in DOM //
+  
+  $randomWord.textContent = pickedWordPlaceholderArr.join(' ');
+  $guessesLeft.textContent = guessesLeft;
+  $lettersUsed.textContent = lettersUsedBank.join('  ')
+  $guessesLeft.textContent = guessesLeft; 
 
+}
 
+document.onkeyup = function(event) {
+  if (event.keyCode >= 65 && event.keyCode <= 90) {
+      letterGuess(event.key)
+  }
+}
 
-
-
-
-
-
-
-
-// document.onkeyup = function (e){
-// var userGuess = e.key;
-// console.log(userGuess);
-// };
-
-//  ------Use this to convert letters to upper case--------//
-// if(event.key == Array.indexOf(i)) {
-//   document.getElementById('asdfja;dsf').textContent.toUpperCase();
-// }
-
-
-
-//while (remainingLetters > 0) {
-    // show the player their progress
-   // alert(answerArray.join(" "));
-
-    //get a guess from the player
-    
-    //prompt("Guess a letter, or click cancel to stop playing.");
-
-//use "toLowerCase" 
-
-    //if the guess is blank
-    //if (userGuess == null) {
-        //exit game loop
-     //   break;
-    // if the guess is more than one letter or no letters
-    //} else if (userGuess.length !== 1) {
-       // alert("Please enter a single letter.");
-    // valid guess
-  //  } else {
-        //update game state with the guess
-       // for (var j = 0; j < randomWord.length; j++) {
-            //if the letter they guessed is in the word
-            //at that point or index...
-           // if (randomWord[j] === userGuess) {
-                //update the answer array with the letter they guessed at that point/index
-          //      answerArray[j] = userGuess;
-                //subtract one from remaining letters
-          //      remainingLetters--;
-        //    }
-      //  }
-  //  }
-    
-//} 
-
-//alert(answerArray.join(" "));
-
-//alert(`Good job! The answer was ${randomWord}`) */
