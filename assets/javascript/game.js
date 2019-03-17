@@ -1,5 +1,5 @@
 // Create an array which includes a list of words for game //
-var word = ["NIGERIA", "ETHIOPIA", "EGYPT", "DR CONGO", "TANZANIA", "SOUTH AFRICA", "KENYA", "UGANDA", "ALGERIA", "SUDAN", "CHAD", "GUINEA", "RWANDA", "BURUNDI", "SIERRA LEONE"]
+var word = ["Nigeria", "Ethiopia", "Egypt", "DR Congo", "Tanzania", "South Africa", "Kenya", "Uganda", "Algeria", "Sudan", "Chad", "Guinea", "Rwanda", "Burundi", "Sierra Leone"]
 
 // Grab reference to my DOM elements //
 
