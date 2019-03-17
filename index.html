@@ -5,10 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HANGMAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <script src="assets/javascript/game.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">    
 </head>
 <body>
-    <h1>Press Any Key to Start</h1>
+    <h1>Hangman <br> African Countries</h1>
+
+<!--The random word appears here (linked through JS)-->
+<div class="text" id="randomWord"></div>
+
+<!-- Wins -->
+<div class="text"> Wins: <span id="wins"></span></div>
+
+<!-- Wins -->
+<div class="text">Losses: <span id="losses"></span></div>
+
+<!--Total number of guesses left-->
+<div class="text"> Guesses Left: <span id="guessesLeft"></span></div>
+
+<!--Letters already used-->
+<div class="text">Letters already used: <span id="lettersUsed"></span></div>
 </body>
+<script src="assets/javascript/game.js"></script>
 </html>
