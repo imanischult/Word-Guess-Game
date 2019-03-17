@@ -2,12 +2,12 @@ body {
     background-image: url("../images/women.jpg");
     background-repeat: no-repeat;
     background-color: #cccccc;
-    background-position: center;
+    background-position: top;
 }
 
 .text {
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Muli', sans-serif;
 }
 
 .navbar {
@@ -15,7 +15,8 @@ body {
 }
 
 #randomWord {
-    padding: 20px;
+    padding: 10px;
+    font-size: 40px
 }
 
 .before-game-card {
@@ -25,4 +26,9 @@ body {
 .game-card {
     position: absoulute;
     bottom: -100px;
+}
+
+.card-header {
+    background: #955635;
+    color: white
 }
